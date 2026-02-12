@@ -31,6 +31,7 @@ export function useChecklistStorage() {
         id: uuidv4(),
         date: formData.date,
         items: {
+          processadorNumber: formData.processadorNumber,
           estruturaFisica: formData.estruturaFisica,
           placasR19: formData.placasR19,
           placasEducativas: formData.placasEducativas,
@@ -61,6 +62,7 @@ export function useChecklistStorage() {
               ...item,
               date: formData.date,
               items: {
+                processadorNumber: formData.processadorNumber,
                 estruturaFisica: formData.estruturaFisica,
                 placasR19: formData.placasR19,
                 placasEducativas: formData.placasEducativas,

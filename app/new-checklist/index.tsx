@@ -17,6 +17,7 @@ export default function NewChecklistScreen() {
 
   const [formData, setFormData] = useState<ChecklistFormData>({
     date: new Date().toISOString().split("T")[0],
+    processadorNumber: "",
     estruturaFisica: "",
     placasR19: "",
     placasEducativas: "",
@@ -45,6 +46,10 @@ export default function NewChecklistScreen() {
   const validateForm = () => {
     if (!formData.date) {
       Alert.alert("Erro", "Por favor, selecione uma data");
+      return false;
+    }
+    if (!formData.processadorNumber) {
+      Alert.alert("Erro", "Por favor, informe o numero do processador");
       return false;
     }
     if (
@@ -162,6 +167,26 @@ export default function NewChecklistScreen() {
               onChange={handleDateChange}
             />
           )}
+
+          {/* Numero do Processador */}
+          <View className="gap-2">
+            <Text className="text-sm font-semibold text-foreground">Numero do Processador</Text>
+            <TextInput
+              style={{
+                borderColor: colors.border,
+                borderWidth: 1,
+                borderRadius: 8,
+                paddingHorizontal: 12,
+                paddingVertical: 10,
+                color: colors.foreground,
+                backgroundColor: colors.surface,
+              }}
+              placeholder="Ex: PROC-001"
+              placeholderTextColor={colors.muted}
+              value={formData.processadorNumber}
+              onChangeText={(value) => handleInputChange('processadorNumber', value)}
+            />
+          </View>
 
           {/* Form Fields */}
           {renderFormField(

@@ -19,6 +19,7 @@ describe('useChecklistStorage', () => {
   it('deve validar estrutura de dados de checklist', () => {
     const formData: ChecklistFormData = {
       date: '2026-02-11',
+      processadorNumber: 'PROC-001',
       estruturaFisica: 'Estrutura em bom estado',
       placasR19: 'Placas funcionando',
       placasEducativas: 'Placas íntegras',
@@ -28,6 +29,7 @@ describe('useChecklistStorage', () => {
     };
 
     expect(formData.date).toBeDefined();
+    expect(formData.processadorNumber).toBeDefined();
     expect(formData.estruturaFisica).toBeDefined();
     expect(formData.placasR19).toBeDefined();
     expect(formData.placasEducativas).toBeDefined();
@@ -39,6 +41,7 @@ describe('useChecklistStorage', () => {
   it('deve validar campos obrigatórios', () => {
     const formData: ChecklistFormData = {
       date: '2026-02-11',
+      processadorNumber: '',
       estruturaFisica: '',
       placasR19: '',
       placasEducativas: '',
@@ -49,6 +52,7 @@ describe('useChecklistStorage', () => {
 
     const isValid =
       formData.date &&
+      formData.processadorNumber &&
       formData.estruturaFisica &&
       formData.placasR19 &&
       formData.placasEducativas &&

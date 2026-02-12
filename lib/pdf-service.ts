@@ -75,6 +75,11 @@ export async function generateChecklistPDF(checklist: ChecklistItem): Promise<st
       </div>
 
       <div class="section">
+        <div class="section-title">Numero do Processador</div>
+        <div class="section-content">${checklist.items.processadorNumber || 'Não preenchido'}</div>
+      </div>
+
+      <div class="section">
         <div class="section-title">Estrutura Física do Equipamento</div>
         <div class="section-content">${checklist.items.estruturaFisica || 'Não preenchido'}</div>
       </div>

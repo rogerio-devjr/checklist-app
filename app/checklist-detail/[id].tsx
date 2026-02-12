@@ -131,6 +131,9 @@ export default function ChecklistDetailScreen() {
             </Text>
           </View>
 
+          {/* Numero do Processador */}
+          {renderField("Numero do Processador", checklist.items.processadorNumber)}
+
           {/* Form Fields */}
           {renderField("Estrutura Física do Equipamento", checklist.items.estruturaFisica)}
           {renderField("Placas R19", checklist.items.placasR19)}

@@ -33,8 +33,9 @@
 - [x] Testar relatórios com dados reais
 - [x] Ajustar UI/UX conforme feedback
 - [x] Documentar instruções de uso
+- [x] Criar testes unitários com Vitest
 
 ## Fase 6: Entrega
-- [ ] Criar checkpoint final
-- [ ] Preparar documentação
-- [ ] Entregar ao usuário
+- [x] Criar checkpoint final
+- [x] Preparar documentação
+- [x] Entregar ao usuário

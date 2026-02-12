@@ -19,10 +19,10 @@ export default function NewChecklistScreen() {
     date: new Date().toISOString().split("T")[0],
     processadorNumber: "",
     estruturaFisica: "",
-    placasR19: "",
-    placasEducativas: "",
-    camerasLargaAmpla: "",
-    sensorDoppler: "",
+    placasR19: "conforme",
+    placasEducativas: "conforme",
+    camerasLargaAmpla: "conforme",
+    sensorDoppler: "conforme",
     reparoManutencao: "",
   });
 
@@ -52,15 +52,12 @@ export default function NewChecklistScreen() {
       Alert.alert("Erro", "Por favor, informe o numero do processador");
       return false;
     }
-    if (
-      !formData.estruturaFisica ||
-      !formData.placasR19 ||
-      !formData.placasEducativas ||
-      !formData.camerasLargaAmpla ||
-      !formData.sensorDoppler ||
-      !formData.reparoManutencao
-    ) {
-      Alert.alert("Erro", "Por favor, preencha todos os campos");
+    if (!formData.estruturaFisica) {
+      Alert.alert("Erro", "Por favor, descreva a estrutura fisica");
+      return false;
+    }
+    if (!formData.reparoManutencao) {
+      Alert.alert("Erro", "Por favor, descreva os reparos e manutencao");
       return false;
     }
     return true;
@@ -100,7 +97,7 @@ export default function NewChecklistScreen() {
     field: keyof ChecklistFormData,
     placeholder: string
   ) => (
-    <View className="gap-2 mb-4">
+    <View className="gap-2">
       <Text className="text-sm font-semibold text-foreground">{label}</Text>
       <TextInput
         style={{
@@ -112,15 +109,67 @@ export default function NewChecklistScreen() {
           color: colors.foreground,
           backgroundColor: colors.surface,
           minHeight: 100,
+          textAlignVertical: "top",
         }}
         placeholder={placeholder}
         placeholderTextColor={colors.muted}
-        value={formData[field]}
+        value={formData[field] as string}
         onChangeText={(value) => handleInputChange(field, value)}
         multiline
-        numberOfLines={4}
-        textAlignVertical="top"
       />
+    </View>
+  );
+
+  const renderStatusField = (
+    label: string,
+    field: keyof ChecklistFormData
+  ) => (
+    <View className="gap-2">
+      <Text className="text-sm font-semibold text-foreground">{label}</Text>
+      <View className="flex-row gap-3">
+        <TouchableOpacity
+          onPress={() => handleInputChange(field, 'conforme')}
+          style={{
+            flex: 1,
+            backgroundColor: formData[field] === 'conforme' ? colors.success : colors.surface,
+            borderColor: formData[field] === 'conforme' ? colors.success : colors.border,
+            borderWidth: 2,
+            borderRadius: 8,
+            paddingVertical: 12,
+            alignItems: 'center',
+          }}
+          activeOpacity={0.7}
+        >
+          <Text
+            className={`font-semibold ${
+              formData[field] === 'conforme' ? 'text-white' : 'text-foreground'
+            }`}
+          >
+            Conforme
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => handleInputChange(field, 'nao-conforme')}
+          style={{
+            flex: 1,
+            backgroundColor: formData[field] === 'nao-conforme' ? colors.error : colors.surface,
+            borderColor: formData[field] === 'nao-conforme' ? colors.error : colors.border,
+            borderWidth: 2,
+            borderRadius: 8,
+            paddingVertical: 12,
+            alignItems: 'center',
+          }}
+          activeOpacity={0.7}
+        >
+          <Text
+            className={`font-semibold ${
+              formData[field] === 'nao-conforme' ? 'text-white' : 'text-foreground'
+            }`}
+          >
+            Não Conforme
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 
@@ -195,24 +244,21 @@ export default function NewChecklistScreen() {
             "Descreva o estado da estrutura física..."
           )}
 
-          {renderFormField("Placas R19", "placasR19", "Descreva o estado das placas R19...")}
+          {renderStatusField("Placas R19", "placasR19")}
 
-          {renderFormField(
+          {renderStatusField(
             "Placas Educativas",
-            "placasEducativas",
-            "Descreva o estado das placas educativas..."
+            "placasEducativas"
           )}
 
-          {renderFormField(
+          {renderStatusField(
             "Câmeras de faixa e ampla",
-            "camerasLargaAmpla",
-            "Descreva o estado das câmeras..."
+            "camerasLargaAmpla"
           )}
 
-          {renderFormField(
+          {renderStatusField(
             "Sensor Doppler",
-            "sensorDoppler",
-            "Descreva o estado do sensor Doppler..."
+            "sensorDoppler"
           )}
 
           {renderFormField(

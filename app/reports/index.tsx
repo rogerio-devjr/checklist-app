@@ -60,14 +60,14 @@ export default function ReportsScreen() {
 
     periodChecklists.forEach((checklist) => {
       if (checklist.items.estruturaFisica && checklist.items.estruturaFisica.length > 10)
-        problemsByType["Estrutura Física"]++;
-      if (checklist.items.placasR19 && checklist.items.placasR19.length > 10)
+        problemsByType["Estrutura Fisica"]++;
+      if ((checklist.items.placasR19 as string) === 'nao-conforme')
         problemsByType["Placas R19"]++;
-      if (checklist.items.placasEducativas && checklist.items.placasEducativas.length > 10)
+      if (checklist.items.placasEducativas === 'nao-conforme')
         problemsByType["Placas Educativas"]++;
-      if (checklist.items.camerasLargaAmpla && checklist.items.camerasLargaAmpla.length > 10)
-        problemsByType["Câmeras"]++;
-      if (checklist.items.sensorDoppler && checklist.items.sensorDoppler.length > 10)
+      if (checklist.items.camerasLargaAmpla === 'nao-conforme')
+        problemsByType["Cameras"]++;
+      if (checklist.items.sensorDoppler === 'nao-conforme')
         problemsByType["Sensor Doppler"]++;
       if (checklist.items.reparoManutencao && checklist.items.reparoManutencao.length > 10)
         problemsByType["Reparos"]++;

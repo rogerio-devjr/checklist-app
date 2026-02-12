@@ -21,10 +21,10 @@ describe('useChecklistStorage', () => {
       date: '2026-02-11',
       processadorNumber: 'PROC-001',
       estruturaFisica: 'Estrutura em bom estado',
-      placasR19: 'Placas funcionando',
-      placasEducativas: 'Placas íntegras',
-      camerasLargaAmpla: 'Câmeras operacionais',
-      sensorDoppler: 'Sensor ativo',
+      placasR19: 'conforme',
+      placasEducativas: 'conforme',
+      camerasLargaAmpla: 'conforme',
+      sensorDoppler: 'conforme',
       reparoManutencao: 'Manutenção realizada',
     };
 
@@ -43,10 +43,10 @@ describe('useChecklistStorage', () => {
       date: '2026-02-11',
       processadorNumber: '',
       estruturaFisica: '',
-      placasR19: '',
-      placasEducativas: '',
-      camerasLargaAmpla: '',
-      sensorDoppler: '',
+      placasR19: 'conforme',
+      placasEducativas: 'conforme',
+      camerasLargaAmpla: 'conforme',
+      sensorDoppler: 'conforme',
       reparoManutencao: '',
     };
 
@@ -54,10 +54,6 @@ describe('useChecklistStorage', () => {
       formData.date &&
       formData.processadorNumber &&
       formData.estruturaFisica &&
-      formData.placasR19 &&
-      formData.placasEducativas &&
-      formData.camerasLargaAmpla &&
-      formData.sensorDoppler &&
       formData.reparoManutencao;
 
     expect(isValid).toBeFalsy();

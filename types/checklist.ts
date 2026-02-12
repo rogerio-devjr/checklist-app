@@ -22,10 +22,10 @@ export interface ChecklistFormData {
   date: string;
   processadorNumber: string;
   estruturaFisica: string;
-  placasR19: string;
-  placasEducativas: string;
-  camerasLargaAmpla: string;
-  sensorDoppler: string;
+  placasR19: 'conforme' | 'nao-conforme';
+  placasEducativas: 'conforme' | 'nao-conforme';
+  camerasLargaAmpla: 'conforme' | 'nao-conforme';
+  sensorDoppler: 'conforme' | 'nao-conforme';
   reparoManutencao: string;
 }
 

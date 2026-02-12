@@ -49,3 +49,10 @@
 
 ## Bugs Reportados
 - [x] Erro ao salvar/exportar relatório em PDF - CORRIGIDO
+
+## Fase 8: Modificacao de Campos
+- [x] Alterar campos 3, 4, 5, 6 para selecao "Conforme" e "Nao Conforme"
+- [x] Atualizar tipos de dados
+- [x] Modificar formulario com botoes de selecao
+- [x] Atualizar telas de exibicao
+- [x] Testar e salvar checkpoint

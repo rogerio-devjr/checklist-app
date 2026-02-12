@@ -82,6 +82,27 @@ export default function ChecklistDetailScreen() {
     });
   };
 
+  const renderStatusField = (label: string, value: string) => {
+    const isConforme = value === 'conforme';
+    return (
+      <View className="mb-6">
+        <Text className="text-sm font-semibold text-muted mb-2">{label}</Text>
+        <View
+          style={{
+            backgroundColor: isConforme ? colors.success : colors.error,
+            borderRadius: 8,
+            padding: 12,
+            alignItems: 'center',
+          }}
+        >
+          <Text className="text-base font-semibold text-white">
+            {isConforme ? 'Conforme' : 'Nao Conforme'}
+          </Text>
+        </View>
+      </View>
+    );
+  };
+
   const renderField = (label: string, value: string) => (
     <View className="mb-6">
       <Text className="text-sm font-semibold text-muted mb-2">{label}</Text>
@@ -132,11 +153,11 @@ export default function ChecklistDetailScreen() {
           {renderField("Numero do Processador", checklist.items.processadorNumber)}
 
           {/* Form Fields */}
-          {renderField("Estrutura Física do Equipamento", checklist.items.estruturaFisica)}
-          {renderField("Placas R19", checklist.items.placasR19)}
-          {renderField("Placas Educativas", checklist.items.placasEducativas)}
-          {renderField("Câmeras de faixa e ampla", checklist.items.camerasLargaAmpla)}
-          {renderField("Sensor Doppler", checklist.items.sensorDoppler)}
+          {renderField("Estrutura Fisica do Equipamento", checklist.items.estruturaFisica)}
+          {renderStatusField("Placas R19", checklist.items.placasR19)}
+          {renderStatusField("Placas Educativas", checklist.items.placasEducativas)}
+          {renderStatusField("Cameras de faixa e ampla", checklist.items.camerasLargaAmpla)}
+          {renderStatusField("Sensor Doppler", checklist.items.sensorDoppler)}
           {renderField(
             "Reparos e Manutenção",
             checklist.items.reparoManutencao

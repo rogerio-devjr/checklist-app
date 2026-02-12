@@ -28,11 +28,11 @@ const schemeFromBundleId = `manus${timestamp}`;
 
 const env = {
   // App branding - update these values directly (do not use env vars)
-  appName: "Checklist de Equipamentos",
+  appName: "Checklist Equipamentos",
   appSlug: "checklist-app",
   // S3 URL of the app logo - set this to the URL returned by generate_image when creating custom logo
   // Leave empty to use the default icon from assets/images/icon.png
-  logoUrl: "",
+  logoUrl: "https://private-us-east-1.manuscdn.com/sessionFile/KEhKBtpLv8PexR2rGi24vH/sandbox/RccmZ7UMmoIBzNfVtKyq4M-img-1_1770858842000_na1fn_aWNvbg.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvS0VoS0J0cEx2OFBleFIyckdpMjR2SC9zYW5kYm94L1JjY21aN1VNbW9JQnpOZlZ0S3lxNE0taW1nLTFfMTc3MDg1ODg0MjAwMF9uYTFmbl9hV052YmcucG5nP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=lGBl1sOi6lrvimDu59s1txo6kjncRuoIDuq2UIXm9~Rx772K0mTc~QN8JHOBog5-U5uDyQBVMMFhg-l~YMRJMovFH2naC25vRjQ5SngyDECwevOPgtM9aE9PU8h75TNU0QdiZIIH2GNZKsGibSvy0WKvP1k3DHsR3zTnGL22o0J5Z3aKayAuyR6vYQxt8EeOp~1-f~al4HGAr~LpImCUsny9cqj3zkB3BPMKxhCV2sSXKF2MmJUJxRdYkTBG6sHo1KOLM8nImldDkm-BxNwccc4glSn3iJ51JSsR-L2GqNSGoGGW6OPbrUYi-xADeN2PtRDdz2dnnz0F5QZNeLxmIg__",
   scheme: schemeFromBundleId,
   iosBundleId: bundleId,
   androidPackage: bundleId,

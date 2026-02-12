@@ -108,9 +108,18 @@ export async function generateChecklistPDF(checklist: ChecklistItem): Promise<vo
       </div>
 
       <div class="section">
-        <div class="section-title">Reparos e Manutenção</div>
-        <div class="section-content">${checklist.items.reparoManutencao || 'Não preenchido'}</div>
+        <div class="section-title">Reparos e Manutencao</div>
+        <div class="section-content">${checklist.items.reparoManutencao || 'Nao preenchido'}</div>
       </div>
+
+      ${checklist.items.assinaturaTecnico ? `
+      <div class="section">
+        <div class="section-title">Assinatura do Tecnico</div>
+        <div class="section-content">
+          <img src="${checklist.items.assinaturaTecnico}" style="max-width: 200px; max-height: 100px;" />
+        </div>
+      </div>
+      ` : ''}
 
       <div class="footer">
         <p>Gerado em ${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR')}</p>

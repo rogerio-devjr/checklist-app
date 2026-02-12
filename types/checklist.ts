@@ -13,6 +13,7 @@ export interface ChecklistItem {
     camerasLargaAmpla: string;
     sensorDoppler: string;
     reparoManutencao: string;
+    assinaturaTecnico: string;
   };
   createdAt: string;
   updatedAt: string;
@@ -27,6 +28,7 @@ export interface ChecklistFormData {
   camerasLargaAmpla: 'conforme' | 'nao-conforme';
   sensorDoppler: 'conforme' | 'nao-conforme';
   reparoManutencao: string;
+  assinaturaTecnico: string;
 }
 
 export interface ReportData {

@@ -38,6 +38,7 @@ export function useChecklistStorage() {
           camerasLargaAmpla: formData.camerasLargaAmpla,
           sensorDoppler: formData.sensorDoppler,
           reparoManutencao: formData.reparoManutencao,
+          assinaturaTecnico: formData.assinaturaTecnico,
         },
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
@@ -69,6 +70,7 @@ export function useChecklistStorage() {
                 camerasLargaAmpla: formData.camerasLargaAmpla,
                 sensorDoppler: formData.sensorDoppler,
                 reparoManutencao: formData.reparoManutencao,
+                assinaturaTecnico: formData.assinaturaTecnico,
               },
               updatedAt: new Date().toISOString(),
             }

@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, TouchableOpacity, Alert, Share } from "react-native";
+import { ScrollView, Text, View, TouchableOpacity, Alert, Image } from "react-native";
 import { ScreenContainer } from "@/components/screen-container";
 import { useChecklistStorage } from "@/hooks/use-checklist-storage";
 import { useRouter, useLocalSearchParams } from "expo-router";
@@ -159,8 +159,26 @@ export default function ChecklistDetailScreen() {
           {renderStatusField("Cameras de faixa e ampla", checklist.items.camerasLargaAmpla)}
           {renderStatusField("Sensor Doppler", checklist.items.sensorDoppler)}
           {renderField(
-            "Reparos e Manutenção",
+            "Reparos e Manutencao",
             checklist.items.reparoManutencao
+          )}
+
+          {/* Signature Display */}
+          {checklist.items.assinaturaTecnico && (
+            <View className="mb-6">
+              <Text className="text-sm font-semibold text-muted mb-2">Assinatura do Tecnico</Text>
+              <Image
+                source={{ uri: checklist.items.assinaturaTecnico }}
+                style={{
+                  width: '100%',
+                  height: 120,
+                  borderColor: colors.border,
+                  borderWidth: 1,
+                  borderRadius: 8,
+                  backgroundColor: colors.surface,
+                }}
+              />
+            </View>
           )}
 
           {/* Action Buttons */}

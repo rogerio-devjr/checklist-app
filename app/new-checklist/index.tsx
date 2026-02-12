@@ -1,12 +1,13 @@
-import { ScrollView, Text, View, TouchableOpacity, TextInput, Alert } from "react-native";
+import { ScrollView, Text, View, TouchableOpacity, TextInput, Alert, Image } from "react-native";
 import { ScreenContainer } from "@/components/screen-container";
 import { useChecklistStorage } from "@/hooks/use-checklist-storage";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ChecklistFormData } from "@/types/checklist";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useColors } from "@/hooks/use-colors";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import SignatureCanvas from "react-native-signature-canvas";
 
 export default function NewChecklistScreen() {
   const router = useRouter();
@@ -14,6 +15,8 @@ export default function NewChecklistScreen() {
   const { saveChecklist } = useChecklistStorage();
   const [isLoading, setIsLoading] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showSignaturePad, setShowSignaturePad] = useState(false);
+  const signatureRef = useRef<any>(null);
 
   const [formData, setFormData] = useState<ChecklistFormData>({
     date: new Date().toISOString().split("T")[0],
@@ -24,6 +27,7 @@ export default function NewChecklistScreen() {
     camerasLargaAmpla: "conforme",
     sensorDoppler: "conforme",
     reparoManutencao: "",
+    assinaturaTecnico: "",
   });
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
@@ -43,6 +47,23 @@ export default function NewChecklistScreen() {
     });
   };
 
+  const handleSignatureEnd = () => {
+    if (signatureRef.current) {
+      signatureRef.current.readSignature();
+    }
+  };
+
+  const handleSignatureCapture = (signature: string) => {
+    handleInputChange('assinaturaTecnico', signature);
+    setShowSignaturePad(false);
+  };
+
+  const handleClearSignature = () => {
+    if (signatureRef.current) {
+      signatureRef.current.clearSignature();
+    }
+  };
+
   const validateForm = () => {
     if (!formData.date) {
       Alert.alert("Erro", "Por favor, selecione uma data");
@@ -58,6 +79,10 @@ export default function NewChecklistScreen() {
     }
     if (!formData.reparoManutencao) {
       Alert.alert("Erro", "Por favor, descreva os reparos e manutencao");
+      return false;
+    }
+    if (!formData.assinaturaTecnico) {
+      Alert.alert("Erro", "Por favor, assine o checklist");
       return false;
     }
     return true;
@@ -262,9 +287,112 @@ export default function NewChecklistScreen() {
           )}
 
           {renderFormField(
-            "Especifique o que foi realizado de reparo e manutenção",
+            "Especifique o que foi realizado de reparo e manutencao",
             "reparoManutencao",
-            "Descreva os reparos e manutenções realizados..."
+            "Descreva os reparos e manutencoes realizados..."
+          )}
+
+          {/* Signature Field */}
+          <View className="gap-2">
+            <Text className="text-sm font-semibold text-foreground">Assinatura do Tecnico</Text>
+            {formData.assinaturaTecnico ? (
+              <View className="gap-2">
+                <Image
+                  source={{ uri: formData.assinaturaTecnico }}
+                  style={{
+                    width: '100%',
+                    height: 120,
+                    borderColor: colors.border,
+                    borderWidth: 1,
+                    borderRadius: 8,
+                    backgroundColor: colors.surface,
+                  }}
+                />
+                <TouchableOpacity
+                  onPress={() => setShowSignaturePad(true)}
+                  style={{
+                    backgroundColor: colors.surface,
+                    borderColor: colors.border,
+                    borderWidth: 1,
+                    borderRadius: 8,
+                    paddingVertical: 10,
+                    alignItems: 'center',
+                  }}
+                  activeOpacity={0.7}
+                >
+                  <Text className="text-foreground font-semibold">Refazer Assinatura</Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <TouchableOpacity
+                onPress={() => setShowSignaturePad(true)}
+                style={{
+                  backgroundColor: colors.surface,
+                  borderColor: colors.border,
+                  borderWidth: 2,
+                  borderRadius: 8,
+                  paddingVertical: 40,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                activeOpacity={0.7}
+              >
+                <MaterialIcons name="edit" size={32} color={colors.muted} />
+                <Text className="text-muted font-semibold mt-2">Toque para Assinar</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+
+          {/* Signature Modal */}
+          {showSignaturePad && (
+            <View className="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
+              <View className="bg-background rounded-lg p-4 w-11/12 max-h-96">
+                <Text className="text-lg font-bold text-foreground mb-4">Assinar Checklist</Text>
+                <SignatureCanvas
+                  ref={signatureRef}
+                  onOK={handleSignatureCapture}
+                  onEnd={handleSignatureEnd}
+                  autoClear={false}
+                  style={{
+                    width: '100%',
+                    height: 250,
+                    borderColor: colors.border,
+                    borderWidth: 1,
+                    borderRadius: 8,
+                  }}
+                />
+                <View className="flex-row gap-3 mt-4">
+                  <TouchableOpacity
+                    onPress={handleClearSignature}
+                    style={{
+                      flex: 1,
+                      backgroundColor: colors.surface,
+                      borderColor: colors.border,
+                      borderWidth: 1,
+                      borderRadius: 8,
+                      paddingVertical: 10,
+                      alignItems: 'center',
+                    }}
+                    activeOpacity={0.7}
+                  >
+                    <Text className="text-foreground font-semibold">Limpar</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => setShowSignaturePad(false)}
+                    style={{
+                      flex: 1,
+                      backgroundColor: colors.error,
+                      borderRadius: 8,
+                      paddingVertical: 10,
+                      alignItems: 'center',
+                    }}
+                    activeOpacity={0.8}
+                  >
+                    <Text className="text-white font-semibold">Cancelar</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
           )}
 
           {/* Action Buttons */}

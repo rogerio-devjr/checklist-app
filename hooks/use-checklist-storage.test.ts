@@ -25,7 +25,8 @@ describe('useChecklistStorage', () => {
       placasEducativas: 'conforme',
       camerasLargaAmpla: 'conforme',
       sensorDoppler: 'conforme',
-      reparoManutencao: 'Manutenção realizada',
+      reparoManutencao: 'Manutencao realizada',
+      assinaturaTecnico: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
     };
 
     expect(formData.date).toBeDefined();
@@ -38,7 +39,7 @@ describe('useChecklistStorage', () => {
     expect(formData.reparoManutencao).toBeDefined();
   });
 
-  it('deve validar campos obrigatórios', () => {
+  it('deve validar campos obrigatorios', () => {
     const formData: ChecklistFormData = {
       date: '2026-02-11',
       processadorNumber: '',
@@ -48,6 +49,7 @@ describe('useChecklistStorage', () => {
       camerasLargaAmpla: 'conforme',
       sensorDoppler: 'conforme',
       reparoManutencao: '',
+      assinaturaTecnico: '',
     };
 
     const isValid =

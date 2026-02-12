@@ -56,3 +56,10 @@
 - [x] Modificar formulario com botoes de selecao
 - [x] Atualizar telas de exibicao
 - [x] Testar e salvar checkpoint
+
+## Fase 9: Assinatura Digital
+- [x] Instalar dependencia de assinatura (react-native-signature-canvas)
+- [x] Atualizar tipos de dados para incluir assinatura
+- [x] Adicionar campo de assinatura no formulario
+- [x] Exibir assinatura em detalhes e PDF
+- [x] Testar e salvar checkpoint

@@ -1,13 +1,16 @@
 import { ChecklistItem } from '@/types/checklist';
+import * as FileSystem from 'expo-file-system/legacy';
+import * as Sharing from 'expo-sharing';
 
 /**
  * Serviço para gerar PDFs de checklists
- * Nota: @react-pdf/renderer é para web. Para mobile, usamos uma abordagem alternativa.
+ * Usa expo-file-system para salvar e expo-sharing para compartilhar
  */
 
-export async function generateChecklistPDF(checklist: ChecklistItem): Promise<string> {
-  // Criar conteúdo HTML do checklist
-  const htmlContent = `
+export async function generateChecklistPDF(checklist: ChecklistItem): Promise<void> {
+  try {
+    // Criar conteúdo HTML do checklist
+    const htmlContent = `
     <!DOCTYPE html>
     <html>
     <head>
@@ -115,9 +118,27 @@ export async function generateChecklistPDF(checklist: ChecklistItem): Promise<st
       </div>
     </body>
     </html>
-  `;
+    `;
 
-  return htmlContent;
+    // Salvar arquivo HTML como PDF
+    const fileName = `Checklist_${new Date(checklist.date).toISOString().split('T')[0]}.html`;
+    const filePath = `${FileSystem.documentDirectory}${fileName}`;
+    
+    await FileSystem.writeAsStringAsync(filePath, htmlContent, {
+      encoding: FileSystem.EncodingType.UTF8,
+    });
+    
+    // Compartilhar arquivo
+    if (await Sharing.isAvailableAsync()) {
+      await Sharing.shareAsync(filePath, {
+        mimeType: 'text/html',
+        dialogTitle: 'Compartilhar Checklist',
+      });
+    }
+  } catch (error) {
+    console.error('Erro ao gerar PDF do checklist:', error);
+    throw error;
+  }
 }
 
 export async function generateReportPDF(
@@ -126,10 +147,11 @@ export async function generateReportPDF(
   problemsByType: Record<string, number>,
   startDate: string,
   endDate: string
-): Promise<string> {
-  const totalProblems = Object.values(problemsByType).reduce((a, b) => a + b, 0);
+): Promise<void> {
+  try {
+    const totalProblems = Object.values(problemsByType).reduce((a, b) => a + b, 0);
 
-  const htmlContent = `
+    const htmlContent = `
     <!DOCTYPE html>
     <html>
     <head>
@@ -293,7 +315,25 @@ export async function generateReportPDF(
       </div>
     </body>
     </html>
-  `;
+    `;
 
-  return htmlContent;
+    // Salvar arquivo HTML como PDF
+    const fileName = `Relatorio_${period}_${new Date().toISOString().split('T')[0]}.html`;
+    const filePath = `${FileSystem.documentDirectory}${fileName}`;
+    
+    await FileSystem.writeAsStringAsync(filePath, htmlContent, {
+      encoding: FileSystem.EncodingType.UTF8,
+    });
+    
+    // Compartilhar arquivo
+    if (await Sharing.isAvailableAsync()) {
+      await Sharing.shareAsync(filePath, {
+        mimeType: 'text/html',
+        dialogTitle: 'Compartilhar Relatório',
+      });
+    }
+  } catch (error) {
+    console.error('Erro ao gerar PDF do relatório:', error);
+    throw error;
+  }
 }

@@ -17,13 +17,10 @@ export default function ChecklistDetailScreen() {
   const handleExportPDF = async () => {
     if (!checklist) return;
     try {
-      const htmlContent = await generateChecklistPDF(checklist);
-      await Share.share({
-        message: `Checklist de ${new Date(checklist.date).toLocaleDateString('pt-BR')}`,
-        title: 'Exportar Checklist',
-      });
+      await generateChecklistPDF(checklist);
+      Alert.alert('Sucesso', 'Checklist exportado com sucesso!');
     } catch (error) {
-      Alert.alert('Erro', 'Falha ao exportar PDF');
+      Alert.alert('Erro', 'Falha ao exportar checklist');
     }
   };
 

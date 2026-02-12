@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, TouchableOpacity, Dimensions, Share, Alert } from "react-native";
+import { ScrollView, Text, View, TouchableOpacity, Dimensions, Alert } from "react-native";
 import { ScreenContainer } from "@/components/screen-container";
 import { useChecklistStorage } from "@/hooks/use-checklist-storage";
 import { useRouter } from "expo-router";
@@ -17,17 +17,14 @@ export default function ReportsScreen() {
 
   const handleExportReport = async () => {
     try {
-      const htmlContent = await generateReportPDF(
+      await generateReportPDF(
         period,
         reportData.totalChecklists,
         reportData.problemsByType,
         reportData.startDate,
         reportData.endDate
       );
-      await Share.share({
-        message: `Relatório de ${period === 'monthly' ? 'Equipamentos - Mês' : 'Equipamentos - Ano'}`,
-        title: 'Exportar Relatório',
-      });
+      Alert.alert('Sucesso', 'Relatório exportado com sucesso!');
     } catch (error) {
       Alert.alert('Erro', 'Falha ao exportar relatório');
     }

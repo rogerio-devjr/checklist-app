@@ -46,3 +46,6 @@
 - [x] Atualizar telas de novo checklist, detalhes e relatórios
 - [x] Testar novo campo em todos os fluxos
 - [x] Salvar checkpoint com alterações
+
+## Bugs Reportados
+- [x] Erro ao salvar/exportar relatório em PDF - CORRIGIDO

@@ -26,7 +26,6 @@ describe('useChecklistStorage', () => {
       camerasLargaAmpla: 'conforme',
       sensorDoppler: 'conforme',
       reparoManutencao: 'Manutencao realizada',
-      assinaturaTecnico: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
     };
 
     expect(formData.date).toBeDefined();
@@ -49,7 +48,6 @@ describe('useChecklistStorage', () => {
       camerasLargaAmpla: 'conforme',
       sensorDoppler: 'conforme',
       reparoManutencao: '',
-      assinaturaTecnico: '',
     };
 
     const isValid =

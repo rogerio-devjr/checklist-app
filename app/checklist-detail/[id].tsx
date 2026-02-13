@@ -163,24 +163,6 @@ export default function ChecklistDetailScreen() {
             checklist.items.reparoManutencao
           )}
 
-          {/* Signature Display */}
-          {checklist.items.assinaturaTecnico && (
-            <View className="mb-6">
-              <Text className="text-sm font-semibold text-muted mb-2">Assinatura do Tecnico</Text>
-              <Image
-                source={{ uri: checklist.items.assinaturaTecnico }}
-                style={{
-                  width: '100%',
-                  height: 120,
-                  borderColor: colors.border,
-                  borderWidth: 1,
-                  borderRadius: 8,
-                  backgroundColor: colors.surface,
-                }}
-              />
-            </View>
-          )}
-
           {/* Action Buttons */}
           <View className="flex-row gap-3 mt-4">
             <TouchableOpacity

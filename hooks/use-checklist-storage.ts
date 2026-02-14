@@ -9,7 +9,6 @@ export function useChecklistStorage() {
   const [checklists, setChecklists] = useState<ChecklistItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Carregar checklists do armazenamento
   const loadChecklists = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -24,7 +23,6 @@ export function useChecklistStorage() {
     }
   }, []);
 
-  // Salvar novo checklist
   const saveChecklist = useCallback(async (formData: ChecklistFormData) => {
     try {
       const newChecklist: ChecklistItem = {
@@ -44,7 +42,9 @@ export function useChecklistStorage() {
       };
 
       const updatedChecklists = [newChecklist, ...checklists];
-      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(updatedChecklists));
+      const jsonData = JSON.stringify(updatedChecklists);
+      
+      await AsyncStorage.setItem(STORAGE_KEY, jsonData);
       setChecklists(updatedChecklists);
       return newChecklist;
     } catch (error) {
@@ -53,7 +53,6 @@ export function useChecklistStorage() {
     }
   }, [checklists]);
 
-  // Atualizar checklist existente
   const updateChecklist = useCallback(async (id: string, formData: ChecklistFormData) => {
     try {
       const updatedChecklists = checklists.map((item) =>
@@ -82,7 +81,6 @@ export function useChecklistStorage() {
     }
   }, [checklists]);
 
-  // Deletar checklist
   const deleteChecklist = useCallback(async (id: string) => {
     try {
       const updatedChecklists = checklists.filter((item) => item.id !== id);
@@ -94,12 +92,10 @@ export function useChecklistStorage() {
     }
   }, [checklists]);
 
-  // Obter checklist por ID
   const getChecklistById = useCallback((id: string) => {
     return checklists.find((item) => item.id === id);
   }, [checklists]);
 
-  // Obter checklists por período
   const getChecklistsByPeriod = useCallback((startDate: Date, endDate: Date) => {
     return checklists.filter((item) => {
       const itemDate = new Date(item.date);

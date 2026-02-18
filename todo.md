@@ -64,5 +64,13 @@
 - [x] Exibir assinatura em detalhes e PDF
 - [x] Testar e salvar checkpoint
 
+## Fase 10: Permissões de Armazenamento Android
+- [x] Adicionar permissões no app.config.ts
+- [x] Implementar hook useStoragePermissions
+- [x] Solicitar permissões em tempo de execução
+- [x] Integrar com layout raiz
+- [x] Testar compilação e testes
+- [x] Salvar checkpoint com permissões
+
 ## Bugs Críticos
-- [ ] Erro ao salvar checklist em dispositivo Android real - INVESTIGANDO
+- [x] Erro ao salvar checklist em dispositivo Android real - RESOLVIDO COM PERMISSÕES

@@ -77,16 +77,19 @@ export default function NewChecklistScreen() {
 
     try {
       setIsLoading(true);
+      console.log('Iniciando salvamento do checklist...');
       await saveChecklist(formData);
+      console.log('Checklist salvo com sucesso!');
       Alert.alert("Sucesso", "Checklist salvo com sucesso!", [
         {
           text: "OK",
           onPress: () => router.back(),
         },
       ]);
-    } catch (error) {
-      Alert.alert("Erro", "Falha ao salvar checklist. Tente novamente.");
-      console.error(error);
+    } catch (error: any) {
+      console.error('Erro ao salvar:', error);
+      const msg = error?.message || 'Falha ao salvar checklist. Tente novamente.';
+      Alert.alert("Erro", msg);
     } finally {
       setIsLoading(false);
     }

@@ -63,3 +63,6 @@
 - [x] Adicionar campo de assinatura no formulario
 - [x] Exibir assinatura em detalhes e PDF
 - [x] Testar e salvar checkpoint
+
+## Bugs Críticos
+- [ ] Erro ao salvar checklist em dispositivo Android real - INVESTIGANDO

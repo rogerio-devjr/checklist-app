@@ -75,6 +75,7 @@ export async function generateChecklistPDF(checklist: ChecklistItem): Promise<vo
           hour: '2-digit',
           minute: '2-digit'
         })}</p>
+        <p>Técnico: ${checklist.nomeTecnico || 'Não preenchido'}</p>
       </div>
 
       <div class="section">

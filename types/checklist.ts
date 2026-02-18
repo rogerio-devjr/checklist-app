@@ -5,6 +5,7 @@
 export interface ChecklistItem {
   id: string;
   date: string; // ISO 8601 format
+  nomeTecnico: string;
   items: {
     processadorNumber: string;
     estruturaFisica: string;
@@ -20,6 +21,7 @@ export interface ChecklistItem {
 
 export interface ChecklistFormData {
   date: string;
+  nomeTecnico: string;
   processadorNumber: string;
   estruturaFisica: string;
   placasR19: 'conforme' | 'nao-conforme';

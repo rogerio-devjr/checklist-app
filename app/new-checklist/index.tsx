@@ -19,6 +19,7 @@ export default function NewChecklistScreen() {
 
   const [formData, setFormData] = useState<ChecklistFormData>({
     date: new Date().toISOString().split("T")[0],
+    nomeTecnico: "",
     processadorNumber: "",
     estruturaFisica: "",
     placasR19: "conforme",
@@ -50,6 +51,10 @@ export default function NewChecklistScreen() {
   const validateForm = () => {
     if (!formData.date) {
       Alert.alert("Erro", "Por favor, selecione uma data");
+      return false;
+    }
+    if (!formData.nomeTecnico) {
+      Alert.alert("Erro", "Por favor, informe o nome do tecnico");
       return false;
     }
     if (!formData.processadorNumber) {
@@ -220,6 +225,9 @@ export default function NewChecklistScreen() {
               onChange={handleDateChange}
             />
           )}
+
+          {/* Nome do Tecnico */}
+          {renderFormField("Nome do Tecnico", "nomeTecnico", "Ex: João Silva")}
 
           {/* Numero do Processador */}
           <View className="gap-2">

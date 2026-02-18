@@ -28,6 +28,7 @@ export function useChecklistStorage() {
       const newChecklist: ChecklistItem = {
         id: uuidv4(),
         date: formData.date,
+        nomeTecnico: formData.nomeTecnico,
         items: {
           processadorNumber: formData.processadorNumber,
           estruturaFisica: formData.estruturaFisica,

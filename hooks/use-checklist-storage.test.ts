@@ -19,6 +19,7 @@ describe('useChecklistStorage', () => {
   it('deve validar estrutura de dados de checklist', () => {
     const formData: ChecklistFormData = {
       date: '2026-02-11',
+      nomeTecnico: 'João Silva',
       processadorNumber: 'PROC-001',
       estruturaFisica: 'Estrutura em bom estado',
       placasR19: 'conforme',
@@ -41,6 +42,7 @@ describe('useChecklistStorage', () => {
   it('deve validar campos obrigatorios', () => {
     const formData: ChecklistFormData = {
       date: '2026-02-11',
+      nomeTecnico: '',
       processadorNumber: '',
       estruturaFisica: '',
       placasR19: 'conforme',

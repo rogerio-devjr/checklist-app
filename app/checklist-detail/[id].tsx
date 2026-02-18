@@ -133,20 +133,36 @@ export default function ChecklistDetailScreen() {
             <Text className="text-2xl font-bold text-foreground flex-1">Detalhes</Text>
           </View>
 
-          {/* Date Info */}
-          <View
-            style={{
-              backgroundColor: colors.surface,
-              borderColor: colors.border,
-              borderWidth: 1,
-              borderRadius: 8,
-              padding: 12,
-            }}
-          >
-            <Text className="text-sm text-muted">Data da inspeção</Text>
-            <Text className="text-lg font-semibold text-foreground mt-1">
-              {formatDate(checklist.date)}
-            </Text>
+          {/* Date and Tecnico Info */}
+          <View className="gap-4">
+            <View
+              style={{
+                backgroundColor: colors.surface,
+                borderColor: colors.border,
+                borderWidth: 1,
+                borderRadius: 8,
+                padding: 12,
+              }}
+            >
+              <Text className="text-sm text-muted">Data da inspeção</Text>
+              <Text className="text-lg font-semibold text-foreground mt-1">
+                {formatDate(checklist.date)}
+              </Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: colors.surface,
+                borderColor: colors.border,
+                borderWidth: 1,
+                borderRadius: 8,
+                padding: 12,
+              }}
+            >
+              <Text className="text-sm text-muted">Técnico Responsável</Text>
+              <Text className="text-lg font-semibold text-foreground mt-1">
+                {checklist.nomeTecnico}
+              </Text>
+            </View>
           </View>
 
           {/* Numero do Processador */}

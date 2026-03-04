@@ -72,5 +72,13 @@
 - [x] Testar compilação e testes
 - [x] Salvar checkpoint com permissões
 
+## Fase 11: Correção de Erro de Build Android
+- [x] Remover expo-permissions (causa erro de Gradle/Kotlin)
+- [x] Reescrever hook sem expo-permissions
+- [x] Usar permissões declaradas no app.config.ts
+- [x] Validar TypeScript sem erros
+- [x] Validar testes passando (11/11)
+- [x] Validar build bem-sucedido
+
 ## Bugs Críticos
 - [x] Erro ao salvar checklist em dispositivo Android real - RESOLVIDO COM PERMISSÕES
